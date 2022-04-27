@@ -2,8 +2,12 @@ package org.patikadev.ecommerce.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,7 +20,7 @@ public class CustomerAddress extends BaseExtendedModel {
     private String postalCode;
     private String description;
 
-    @OneToOne
-    private Customer customer;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private Customer customer;
 
 }

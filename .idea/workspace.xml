@@ -13,6 +13,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
@@ -68,13 +69,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.patikadev.ecommerce.converter" />
       <recent name="org.patikadev.ecommerce.repository" />
+      <recent name="org.patikadev.ecommerce.service" />
       <recent name="org.patikadev.ecommerce.model.response" />
       <recent name="org.patikadev.ecommerce.model.request" />
-      <recent name="org.patikadev.ecommerce.service" />
-      <recent name="org.patikadev.ecommerce.converter" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.patikadev.ecommerce.repository" />
+      <recent name="org.patikadev.ecommerce.model.response" />
       <recent name="org.patikadev.ecommerce.validator" />
       <recent name="org.patikadev.ecommerce.exception" />
       <recent name="org.patikadev.ecommerce.model.request" />
@@ -127,6 +130,7 @@
       <workItem from="1650305388014" duration="1420000" />
       <workItem from="1650395697565" duration="50107000" />
       <workItem from="1650897991161" duration="38440000" />
+      <workItem from="1650993975113" duration="31409000" />
     </task>
     <servers />
   </component>
@@ -140,9 +144,34 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/ProductServiceImpl.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="27" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/BasketConverterImpl.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/BasketConverterImpl.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/CustomerServiceImpl.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -152,11 +181,6 @@
         <PinnedItemInfo parentTag="org.patikadev.ecommerce.model.request.CreateProductRequest" memberName="category" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="category" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

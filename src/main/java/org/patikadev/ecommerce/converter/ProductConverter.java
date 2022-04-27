@@ -3,7 +3,7 @@ package org.patikadev.ecommerce.converter;
 import org.patikadev.ecommerce.model.Product;
 import org.patikadev.ecommerce.model.request.CreateProductRequest;
 import org.patikadev.ecommerce.model.response.CreateProductResponse;
-import org.patikadev.ecommerce.repository.GetProductResponse;
+import org.patikadev.ecommerce.model.response.GetProductResponse;
 
 public interface ProductConverter {
 

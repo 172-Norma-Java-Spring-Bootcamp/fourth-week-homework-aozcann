@@ -8,7 +8,7 @@ import org.patikadev.ecommerce.exception.BusinessServiceOperationException;
 import org.patikadev.ecommerce.model.Product;
 import org.patikadev.ecommerce.model.request.CreateProductRequest;
 import org.patikadev.ecommerce.model.response.CreateProductResponse;
-import org.patikadev.ecommerce.repository.GetProductResponse;
+import org.patikadev.ecommerce.model.response.GetProductResponse;
 import org.patikadev.ecommerce.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 

@@ -19,9 +19,9 @@ public class Product extends BaseExtendedModel {
     private UUID barcode;
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(optional = false)
     private Brand brand;
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(optional = false)
     private Category category;
 
 

@@ -12,7 +12,6 @@ import java.util.Date;
 @Component
 public class CustomerConverterImpl implements CustomerConverter {
 
-
     @Override
     public Customer toCreateCustomerRequest(CreateCustomerRequest request) {
         Customer customer = new Customer();
@@ -32,7 +31,7 @@ public class CustomerConverterImpl implements CustomerConverter {
         customerAddress.setPostalCode(request.customerAddress().postalCode());
         customerAddress.setDescription(request.customerAddress().description());
 
-        customerAddress.setCustomer(customer);
+//        customerAddress.setCustomer(customer);
         customer.setCustomerAddress(customerAddress);
 
         return customer;

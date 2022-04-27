@@ -12,7 +12,7 @@ import org.patikadev.ecommerce.model.response.GetCategoryParentResponse;
 import org.patikadev.ecommerce.model.response.GetCategoryResponse;
 import org.patikadev.ecommerce.repository.BrandRepository;
 import org.patikadev.ecommerce.repository.CategoryRepository;
-import org.patikadev.ecommerce.repository.GetProductResponse;
+import org.patikadev.ecommerce.model.response.GetProductResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
