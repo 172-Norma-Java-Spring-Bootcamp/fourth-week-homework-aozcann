@@ -7,7 +7,7 @@ import org.patikadev.ecommerce.model.response.GetCategoryResponse;
 
 public interface CategoryConverter {
 
-    Category toCreateCategoryRequest(CreateCategoryRequest request);
+    Category toCreateCategory(CreateCategoryRequest request);
 
     CreateCategoryResponse toCreateCategoryResponse(Category category);
 

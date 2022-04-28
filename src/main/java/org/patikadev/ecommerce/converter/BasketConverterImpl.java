@@ -6,17 +6,15 @@ import org.patikadev.ecommerce.model.Basket;
 import org.patikadev.ecommerce.model.BasketItem;
 import org.patikadev.ecommerce.model.Customer;
 import org.patikadev.ecommerce.model.Product;
-import org.patikadev.ecommerce.model.enums.BasketStatus;
 import org.patikadev.ecommerce.model.request.CreateBasketRequest;
 import org.patikadev.ecommerce.model.response.CreateBasketResponse;
-import org.patikadev.ecommerce.repository.BasketItemRepository;
 import org.patikadev.ecommerce.repository.CustomerRepository;
 import org.patikadev.ecommerce.repository.ProductRepository;
 import org.patikadev.ecommerce.utils.Calculator;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,13 +25,12 @@ public class BasketConverterImpl implements BasketConverter {
     private final CustomerRepository customerRepository;
     private final CustomerConverter customerConverter;
     private final ProductRepository productRepository;
-    private final BasketItemRepository basketItemRepository;
 
     private static final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.20);
     private static final BigDecimal TAX_RATE = BigDecimal.valueOf(0.18);
 
     @Override
-    public Basket toCreateBasketRequest(CreateBasketRequest request) {
+    public Basket toCreateBasket(CreateBasketRequest request) {
         Basket basket = new Basket();
 
         Set<BasketItem> basketItems = new HashSet<>();
@@ -54,7 +51,6 @@ public class BasketConverterImpl implements BasketConverter {
             newItem.setTaxPrice(Calculator.getTaxPrice(price, quantity, TAX_RATE));
             newItem.setShippingPrice(basketItem.getShippingPrice());
 
-//            newItem.setBasket(basket);
             basketItems.add(newItem);
         }
         basket.setItems(basketItems);
@@ -82,13 +78,14 @@ public class BasketConverterImpl implements BasketConverter {
         basket.setTotalQuantity(totalQuantity);
         /* total price = priceWithoutDiscount + taxPrice + shippingPrice - discountPrice */
         basket.setTotalPrice(totalPrice);
+        basket.setCreatedAt(new Date());
+        basket.setCreatedBy("AhmetOzcan");
 
         return basket;
     }
 
     @Override
     public CreateBasketResponse toCreateBasketResponse(Basket basket) {
-        BasketStatus status = BasketStatus.INIT;
         return new CreateBasketResponse(basket.getId(),
                 basket.getItems(),
                 basket.getShippingPrice(),
@@ -96,7 +93,7 @@ public class BasketConverterImpl implements BasketConverter {
                 basket.getTotalQuantity(),
                 basket.getDiscountPrice(),
                 basket.getTotalPrice(),
-                status,
                 customerConverter.toGetCustomerResponse(basket.getCustomer()));
     }
+
 }

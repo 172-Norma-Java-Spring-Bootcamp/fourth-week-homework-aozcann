@@ -59,4 +59,22 @@ public final class BusinessServiceOperationException {
         }
     }
 
+    public static class BasketNotFoundException extends BaseException {
+        public BasketNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class OrderNotFoundException extends BaseException {
+        public OrderNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class BasketItemQuantityCanNotBeLessThanZero extends BaseException {
+        public BasketItemQuantityCanNotBeLessThanZero(String message) {
+            super(message);
+        }
+    }
+
 }

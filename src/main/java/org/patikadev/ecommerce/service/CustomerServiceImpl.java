@@ -6,13 +6,14 @@ import org.patikadev.ecommerce.converter.CustomerConverter;
 import org.patikadev.ecommerce.exception.BaseException;
 import org.patikadev.ecommerce.exception.BusinessServiceOperationException;
 import org.patikadev.ecommerce.model.Customer;
-import org.patikadev.ecommerce.model.request.CreateCustomerRequest;
+import org.patikadev.ecommerce.model.request.CreateOrUpdateCustomerRequest;
 import org.patikadev.ecommerce.model.response.CreateCustomerResponse;
 import org.patikadev.ecommerce.model.response.GetCustomerResponse;
 import org.patikadev.ecommerce.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,11 +25,23 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public CreateCustomerResponse create(CreateCustomerRequest request) {
-        Customer customer = customerConverter.toCreateCustomerRequest(request);
+    public CreateCustomerResponse create(CreateOrUpdateCustomerRequest request) {
+        Customer customer = customerConverter.toCreateCustomer(request);
         customerRepository.save(customer);
         log.info("Customer created successfully by id -> {}", customer.getId());
-        return new CreateCustomerResponse(customer.getId());
+        return new  CreateCustomerResponse(customer.getId());
+    }
+
+    @Override
+    public GetCustomerResponse updateCustomer(CreateOrUpdateCustomerRequest request, Long id) {
+        Customer customer = customerRepository.findByIdAndIsDeleted(id,false)
+                .orElseThrow(() -> new BusinessServiceOperationException.CustomerNotFoundException("Customer not found"));
+        Customer updateCustomer = customerConverter.toUpdateCustomer(request,customer);
+        customer.setUpdatedAt(new Date());
+        customer.setUpdatedBy("AhmetOzcan");
+        customerRepository.save(updateCustomer);
+        log.info("Customer updated successfully by id -> {}", customer.getId());
+        return customerConverter.toGetCustomerResponse(customer);
     }
 
     @Override
@@ -66,10 +79,14 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customer.setDeleted(true);
         customer.getCustomerAddress().setDeleted(true);
+        customer.setDeletedAt(new Date());
+        customer.setDeletedBy("AhmetOzcan");
         customerRepository.save(customer);
         log.info("Customer deleted successfully.");
 
         return customer.isDeleted();
     }
+
+
 
 }

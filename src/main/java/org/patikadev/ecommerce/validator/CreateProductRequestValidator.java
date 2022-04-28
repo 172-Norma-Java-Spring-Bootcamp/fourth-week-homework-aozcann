@@ -19,13 +19,13 @@ public class CreateProductRequestValidator implements Validator<CreateProductReq
             throw new ValidationOperationException.ProductNotValidException("Product name can not be null or empty");
         }
         if (!(StringUtils.hasLength(request.image()))) {
-            throw new ValidationOperationException.CustomerNotValidException("Product image can not be null or empty");
+            throw new ValidationOperationException.ProductNotValidException("Product image can not be null or empty");
         }
         if (Objects.isNull(request.barcode())) {
-            throw new ValidationOperationException.CustomerNotValidException("Product barcode can not be null or empty");
+            throw new ValidationOperationException.ProductNotValidException("Product barcode can not be null or empty");
         }
         if (Objects.isNull(request.price())) {
-            throw new ValidationOperationException.CustomerNotValidException("Product price can not be null or empty");
+            throw new ValidationOperationException.ProductNotValidException("Product price can not be null or empty");
         }
         // customer address should validate
 

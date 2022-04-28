@@ -25,7 +25,7 @@ public class ProductConverterImpl implements ProductConverter {
     private final BrandRepository brandRepository;
 
     @Override
-    public Product toCreateProductRequest(CreateProductRequest request) {
+    public Product toCreateProduct(CreateProductRequest request) {
 
         Product product = new Product();
         product.setName(request.name());
@@ -41,6 +41,8 @@ public class ProductConverterImpl implements ProductConverter {
 
         product.setCategory(category);
         product.setBrand(brand);
+        product.setCreatedAt(new Date());
+        product.setCreatedBy("AhmetOzcan");
 
         return product;
     }

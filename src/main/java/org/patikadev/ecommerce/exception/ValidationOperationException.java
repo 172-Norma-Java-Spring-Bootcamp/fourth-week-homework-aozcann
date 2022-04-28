@@ -40,8 +40,17 @@ public final class ValidationOperationException {
         public ProductPriceNotLessZeroValidException(String message) {
             super(message);
         }
-
-
     }
 
+    public static class BasketNotValidException extends BaseException {
+        public BasketNotValidException(String message) {
+            super(message);
+        }
+    }
+
+    public static class PaymemtNotValidException extends BaseException {
+        public PaymemtNotValidException(String message) {
+            super(message);
+        }
+    }
 }

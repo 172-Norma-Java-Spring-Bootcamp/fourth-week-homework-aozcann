@@ -13,10 +13,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -69,17 +69,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.patikadev.ecommerce.model.request" />
+      <recent name="org.patikadev.ecommerce.model.response" />
       <recent name="org.patikadev.ecommerce.converter" />
       <recent name="org.patikadev.ecommerce.repository" />
       <recent name="org.patikadev.ecommerce.service" />
-      <recent name="org.patikadev.ecommerce.model.response" />
-      <recent name="org.patikadev.ecommerce.model.request" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.patikadev.ecommerce.repository" />
-      <recent name="org.patikadev.ecommerce.model.response" />
-      <recent name="org.patikadev.ecommerce.validator" />
-      <recent name="org.patikadev.ecommerce.exception" />
+      <recent name="org.patikadev.ecommerce.service" />
+      <recent name="org.patikadev.ecommerce.controller" />
+      <recent name="org.patikadev.ecommerce.model.enums" />
       <recent name="org.patikadev.ecommerce.model.request" />
     </key>
   </component>
@@ -116,6 +116,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\AEO\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5d1ba876-8b6c-4d48-92d1-c54c0de52dd0" name="Changes" comment="" />
@@ -130,7 +133,7 @@
       <workItem from="1650305388014" duration="1420000" />
       <workItem from="1650395697565" duration="50107000" />
       <workItem from="1650897991161" duration="38440000" />
-      <workItem from="1650993975113" duration="31409000" />
+      <workItem from="1650993975113" duration="60788000" />
     </task>
     <servers />
   </component>
@@ -144,34 +147,36 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/BasketConverterImpl.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/BasketConverterImpl.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/CustomerServiceImpl.java</url>
-          <line>35</line>
+          <line>48</line>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/OrderServiceImpl.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/utils/Calculator.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
+          <line>40</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/CustomerConverter.java</url>
+          <line>9</line>
+          <properties class="org.patikadev.ecommerce.converter.CustomerConverter" method="toCreateCustomer">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

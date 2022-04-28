@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-public class BasketItem extends BaseModel {
+public class BasketItem extends BaseExtendedModel {
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Basket basket;

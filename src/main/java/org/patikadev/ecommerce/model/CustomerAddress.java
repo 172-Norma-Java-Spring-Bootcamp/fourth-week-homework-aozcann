@@ -20,7 +20,5 @@ public class CustomerAddress extends BaseExtendedModel {
     private String postalCode;
     private String description;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    private Customer customer;
 
 }

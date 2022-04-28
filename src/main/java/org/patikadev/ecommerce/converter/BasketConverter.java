@@ -6,8 +6,7 @@ import org.patikadev.ecommerce.model.response.CreateBasketResponse;
 
 public interface BasketConverter {
 
-    Basket toCreateBasketRequest(CreateBasketRequest request);
+    Basket toCreateBasket(CreateBasketRequest request);
 
     CreateBasketResponse toCreateBasketResponse(Basket basket);
-
 }

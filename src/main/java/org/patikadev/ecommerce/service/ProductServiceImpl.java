@@ -13,6 +13,7 @@ import org.patikadev.ecommerce.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public CreateProductResponse create(CreateProductRequest request) {
-        Product product = productConverter.toCreateProductRequest(request);
+        Product product = productConverter.toCreateProduct(request);
         productRepository.save(product);
         log.info("Product created successfully by id -> {}", product.getId());
         return productConverter.toCreateProductResponse(product);
@@ -65,6 +66,8 @@ public class ProductServiceImpl implements ProductService {
     }
     product.setDeleted(true);
         log.info("Product deleted successfully by id -> {}", id);
+        product.setDeletedAt(new Date());
+        product.setDeletedBy("AhmetOzcan");
         productRepository.save(product);
         return true;
     }

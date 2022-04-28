@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Basket extends BaseModel {
+public class Basket extends BaseExtendedModel {
 
     @Column(nullable = false)
     private BigDecimal price;

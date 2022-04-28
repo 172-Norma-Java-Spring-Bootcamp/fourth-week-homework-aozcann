@@ -2,16 +2,16 @@ package org.patikadev.ecommerce.validator;
 
 import org.patikadev.ecommerce.exception.BaseValidationException;
 import org.patikadev.ecommerce.exception.ValidationOperationException;
-import org.patikadev.ecommerce.model.request.CreateCustomerRequest;
+import org.patikadev.ecommerce.model.request.CreateOrUpdateCustomerRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
 @Component
-public class CreateCustomerRequestValidator implements Validator<CreateCustomerRequest> {
+public class CreateCustomerRequestValidator implements Validator<CreateOrUpdateCustomerRequest> {
     @Override
-    public void validate(CreateCustomerRequest request) throws BaseValidationException {
+    public void validate(CreateOrUpdateCustomerRequest request) throws BaseValidationException {
         // fail first approach.
         if (Objects.isNull(request)) {
             throw new ValidationOperationException.CustomerNotValidException("Customer can not be null or empty");

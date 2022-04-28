@@ -7,7 +7,7 @@ import org.patikadev.ecommerce.model.response.GetProductResponse;
 
 public interface ProductConverter {
 
-    Product toCreateProductRequest(CreateProductRequest request);
+    Product toCreateProduct(CreateProductRequest request);
 
     CreateProductResponse toCreateProductResponse(Product product);
 

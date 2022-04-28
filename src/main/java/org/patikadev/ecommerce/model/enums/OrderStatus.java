@@ -1,6 +1,6 @@
 package org.patikadev.ecommerce.model.enums;
 
-public enum BasketStatus {
+public enum OrderStatus {
     INIT,
     ORDER_TAKEN,
     ORDER_CONFIRMED,

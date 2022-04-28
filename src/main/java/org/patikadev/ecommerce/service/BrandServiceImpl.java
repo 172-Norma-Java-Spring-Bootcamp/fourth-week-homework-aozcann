@@ -12,6 +12,7 @@ import org.patikadev.ecommerce.repository.BrandRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public CreateBrandResponse create(CreateBrandRequest request) {
-        Brand brand = brandConverter.toCreateBrandRequest(request);
+        Brand brand = brandConverter.toCreateBrand(request);
         brandRepository.save(brand);
         return brandConverter.toCreateBrandResponse(brand);
     }
@@ -62,6 +63,8 @@ public class BrandServiceImpl implements BrandService {
             throw new BusinessServiceOperationException.BrandAlreadyDeletedException("Brand already deleted.");
         }
         brand.setDeleted(true);
+        brand.setDeletedAt(new Date());
+        brand.setDeletedBy("AhmetOzcan");
         brandRepository.save(brand);
         log.info("Brand deleted successfully.");
 

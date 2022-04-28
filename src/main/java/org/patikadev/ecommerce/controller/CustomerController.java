@@ -1,11 +1,10 @@
 package org.patikadev.ecommerce.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.patikadev.ecommerce.model.request.CreateCustomerRequest;
+import org.patikadev.ecommerce.model.request.CreateOrUpdateCustomerRequest;
 import org.patikadev.ecommerce.model.response.CreateCustomerResponse;
 import org.patikadev.ecommerce.model.response.GetCustomerResponse;
 import org.patikadev.ecommerce.service.CustomerService;
-
 import org.patikadev.ecommerce.validator.Validator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +16,13 @@ import java.util.Collection;
 @RequestMapping("api/customers")
 public class CustomerController {
 
-    private final Validator<CreateCustomerRequest> createCustomerRequestValidator;
+    private final Validator<CreateOrUpdateCustomerRequest> createCustomerRequestValidator;
     private final Validator<Long> idValidator;
     private final CustomerService customerService;
 
 
     @PostMapping
-    public ResponseEntity<CreateCustomerResponse> create(@RequestBody CreateCustomerRequest request) {
+    public ResponseEntity<CreateCustomerResponse> create(@RequestBody CreateOrUpdateCustomerRequest request) {
         createCustomerRequestValidator.validate(request);
         return ResponseEntity.ok(customerService.create(request));
     }
@@ -32,6 +31,13 @@ public class CustomerController {
     public ResponseEntity<GetCustomerResponse> getCustomer(@PathVariable Long id) {
         idValidator.validate(id);
         return ResponseEntity.ok(customerService.getCustomer(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GetCustomerResponse> update(@RequestBody CreateOrUpdateCustomerRequest request,
+                                                      @PathVariable Long id) {
+        idValidator.validate(id);
+        return ResponseEntity.ok(customerService.updateCustomer(request,id));
     }
 
     @GetMapping

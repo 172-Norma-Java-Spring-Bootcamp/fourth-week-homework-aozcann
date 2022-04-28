@@ -12,6 +12,7 @@ import org.patikadev.ecommerce.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CreateCategoryResponse create(CreateCategoryRequest request) {
-        Category category = categoryConverter.toCreateCategoryRequest(request);
+        Category category = categoryConverter.toCreateCategory(request);
         categoryRepository.save(category);
         log.info("Category created successfully by id -> {}", category.getId());
         return categoryConverter.toCreateCategoryResponse(category);
@@ -60,6 +61,8 @@ public class CategoryServiceImpl implements CategoryService {
         }
         category.setDeleted(true);
         log.info("Category deleted successfully by id -> {}", id);
+        category.setDeletedAt(new Date());
+        category.setDeletedBy("AhmetOzcan");
         categoryRepository.save(category);
         return true;
     }
