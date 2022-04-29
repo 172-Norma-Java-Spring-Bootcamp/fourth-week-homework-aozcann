@@ -12,6 +12,7 @@ import org.patikadev.ecommerce.model.request.CreateBasketRequest;
 import org.patikadev.ecommerce.model.response.CreateBasketResponse;
 import org.patikadev.ecommerce.repository.BasketItemRepository;
 import org.patikadev.ecommerce.repository.BasketRepository;
+import org.patikadev.ecommerce.utils.Calculator;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -76,6 +77,7 @@ public class BasketServiceImpl implements BasketService {
         basket.setUpdatedAt(new Date());
         basket.setUpdatedBy("AhmetOzcan");
         basket.setItems(currentItems);
+        basketConverter.toReCalculateBasketPrice(basket);
         basketRepository.save(basket);
 
         return basketConverter.toCreateBasketResponse(basket);

@@ -6,13 +6,9 @@ import org.patikadev.ecommerce.model.Brand;
 import org.patikadev.ecommerce.model.Category;
 import org.patikadev.ecommerce.model.Product;
 import org.patikadev.ecommerce.model.request.CreateProductRequest;
-import org.patikadev.ecommerce.model.response.CreateProductResponse;
-import org.patikadev.ecommerce.model.response.GetBrandResponse;
-import org.patikadev.ecommerce.model.response.GetCategoryParentResponse;
-import org.patikadev.ecommerce.model.response.GetCategoryResponse;
+import org.patikadev.ecommerce.model.response.*;
 import org.patikadev.ecommerce.repository.BrandRepository;
 import org.patikadev.ecommerce.repository.CategoryRepository;
-import org.patikadev.ecommerce.model.response.GetProductResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -70,6 +66,18 @@ public class ProductConverterImpl implements ProductConverter {
                 product.getImage(),
                 getBrandResponse,
                 getCategoryResponse);
+    }
+
+    @Override
+    public GetBasketItemProductResponse toGetBasketItemProductResponse(Product product) {
+        GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(),product.getBrand().getName());
+        return new GetBasketItemProductResponse(product.getId(),
+                product.getName(),
+                product.getPrice(),
+                product.getBarcode(),
+                product.getImage(),
+                getBrandResponse,
+                product.getCategory().getId());
     }
 
 

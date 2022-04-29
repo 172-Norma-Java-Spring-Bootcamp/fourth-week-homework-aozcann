@@ -9,4 +9,6 @@ public interface BasketConverter {
     Basket toCreateBasket(CreateBasketRequest request);
 
     CreateBasketResponse toCreateBasketResponse(Basket basket);
+
+    void toReCalculateBasketPrice(Basket basket);
 }

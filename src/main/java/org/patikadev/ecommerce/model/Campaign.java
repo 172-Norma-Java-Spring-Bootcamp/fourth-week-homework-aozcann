@@ -1,12 +1,17 @@
-package org.patikadev.ecommerce.model;
-
-import lombok.Getter;
-import lombok.Setter;
-
-
-@Getter
-@Setter
-public class Campaign {
-
-
-}
+//package org.patikadev.ecommerce.model;
+//
+//import lombok.Getter;
+//import lombok.Setter;
+//
+//import javax.persistence.Entity;
+//
+//
+//@Getter
+//@Setter
+//@Entity
+//public class Campaign {
+//
+//    String
+//
+//
+//}
