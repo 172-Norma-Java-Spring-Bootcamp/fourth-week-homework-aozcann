@@ -6,7 +6,6 @@ public record GetBasketItemResponse(Long id,
                                     GetBasketItemProductResponse product,
                                     BigDecimal quantity,
                                     BigDecimal price,
-                                    BigDecimal discountPrice,
                                     BigDecimal taxPrice,
                                     BigDecimal shippingPrice) {
 }

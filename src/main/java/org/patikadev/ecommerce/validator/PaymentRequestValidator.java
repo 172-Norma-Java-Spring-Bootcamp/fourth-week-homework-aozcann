@@ -12,10 +12,10 @@ public class PaymentRequestValidator implements Validator<PaymentRequest> {
     @Override
     public void validate(PaymentRequest request) throws BaseValidationException {
         if (Objects.isNull(request)) {
-            throw new ValidationOperationException.PaymemtNotValidException("Payment can not be null or empty.");
+            throw new ValidationOperationException.PaymentNotValidException("Payment can not be null or empty.");
         }
         if (Objects.isNull(request.paymentType())) {
-            throw new ValidationOperationException.PaymemtNotValidException("Payment type can not be null or empty.");
+            throw new ValidationOperationException.PaymentNotValidException("Payment type can not be null or empty.");
         }
     }
 }

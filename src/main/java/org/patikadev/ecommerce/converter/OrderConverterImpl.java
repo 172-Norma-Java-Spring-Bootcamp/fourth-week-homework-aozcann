@@ -27,6 +27,7 @@ public class OrderConverterImpl implements OrderConverter {
         order.setCcv(request.ccv());
         order.setPaymentStatus(PaymentStatus.PAYMENT_FAILED);
         order.setPaymentType(request.paymentType());
+        order.setCustomer(basket.getCustomer());
         order.setCreatedAt(new Date());
         order.setCreatedBy("AhmetOzcan");
         return order;

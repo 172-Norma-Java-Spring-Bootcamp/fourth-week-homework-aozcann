@@ -77,4 +77,16 @@ public final class BusinessServiceOperationException {
         }
     }
 
+    public static class CampaignNotFoundException extends BaseException {
+        public CampaignNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class CampaignCodeNotFoundException extends BaseException {
+        public CampaignCodeNotFoundException(String message) {
+            super(message);
+        }
+
+    }
 }

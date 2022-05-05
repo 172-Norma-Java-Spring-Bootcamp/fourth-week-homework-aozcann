@@ -10,5 +10,5 @@ import java.util.Set;
 public record CreateBasketRequest(Long customerId,
                                   Set<BasketItem> items,
                                   PaymentType paymentType,
-                                  Campaign campaign) {
+                                  String campaignCode) {
 }

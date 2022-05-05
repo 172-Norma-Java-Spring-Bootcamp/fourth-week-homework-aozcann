@@ -50,8 +50,8 @@ public class Calculator {
         return totalShippingPrice;
     }
 
-    public static BigDecimal getTotalPrice(BigDecimal price, BigDecimal tax, BigDecimal shipping, BigDecimal discount) {
-        return price.add(tax).add(shipping).subtract(discount);
+    public static BigDecimal getTotalPrice(BigDecimal price, BigDecimal tax, BigDecimal shipping) {
+        return price.add(tax).add(shipping);
     }
 
     public static BigDecimal getTotalQuantity(Set<BasketItem> basketItems) {

@@ -17,6 +17,9 @@ public class Order extends BaseExtendedModel{
     @OneToOne(cascade = CascadeType.ALL)
     private Basket basket;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Customer customer;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 

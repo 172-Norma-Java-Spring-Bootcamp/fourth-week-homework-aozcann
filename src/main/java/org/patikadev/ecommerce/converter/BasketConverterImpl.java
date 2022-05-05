@@ -2,23 +2,25 @@ package org.patikadev.ecommerce.converter;
 
 import lombok.RequiredArgsConstructor;
 import org.patikadev.ecommerce.exception.BusinessServiceOperationException;
-import org.patikadev.ecommerce.model.Basket;
-import org.patikadev.ecommerce.model.BasketItem;
-import org.patikadev.ecommerce.model.Customer;
-import org.patikadev.ecommerce.model.Product;
+import org.patikadev.ecommerce.model.*;
+import org.patikadev.ecommerce.model.enums.CampaignType;
 import org.patikadev.ecommerce.model.request.CreateBasketRequest;
 import org.patikadev.ecommerce.model.response.CreateBasketResponse;
 import org.patikadev.ecommerce.model.response.GetBasketItemResponse;
-import org.patikadev.ecommerce.model.response.GetProductResponse;
+import org.patikadev.ecommerce.repository.CampaignHistoryRepository;
+import org.patikadev.ecommerce.repository.CampaignRepository;
 import org.patikadev.ecommerce.repository.CustomerRepository;
 import org.patikadev.ecommerce.repository.ProductRepository;
+import org.patikadev.ecommerce.service.CampaignHistoryService;
+import org.patikadev.ecommerce.service.CampaignHistoryServiceImpl;
 import org.patikadev.ecommerce.utils.Calculator;
+import org.patikadev.ecommerce.utils.discount.AmountDiscount;
+import org.patikadev.ecommerce.utils.discount.NewlyRegisteredCampaignDiscount;
+import org.patikadev.ecommerce.utils.discount.RateDiscount;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Component
@@ -28,16 +30,16 @@ public class BasketConverterImpl implements BasketConverter {
     private final CustomerConverter customerConverter;
     private final ProductRepository productRepository;
     private final ProductConverter productConverter;
+    private final CampaignRepository campaignRepository;
+    private final CampaignHistoryService campaignHistoryService;
+    private final CampaignHistoryRepository campaignHistoryRepository;
 
-    private static final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.20);
     private static final BigDecimal TAX_RATE = BigDecimal.valueOf(0.18);
 
     @Override
     public Basket toCreateBasket(CreateBasketRequest request) {
         Basket basket = new Basket();
-        basket.setItems(toCalculateBasketItemsPrice(request.items()));
 
-        toCalculateBasketPrice(basket);
 
         Customer customer = (customerRepository
                 .findByIdAndIsDeleted(request.customerId(), false)
@@ -45,8 +47,61 @@ public class BasketConverterImpl implements BasketConverter {
 
         basket.setCustomer(customer);
 
+        basket.setItems(toCalculateBasketItemsPrice(request.items()));
+        toCalculateBasketPrice(basket);
+
+        Campaign campaign = campaignRepository.findByCodeAndIsDeleted(request.campaignCode(), false).orElse(null);
+        if (Objects.nonNull(campaign)) {
+
+            Collection<CampaignHistory> campaignHistoryList = campaignHistoryRepository.findAllByCustomerId(customer.getId());
+
+            if (campaignHistoryList.isEmpty()) {
+                NewlyRegisteredCampaignDiscount newlyRegisteredCampaignDiscount = new NewlyRegisteredCampaignDiscount();
+                if (Objects.equals(campaign.getUsageLimit(), campaign.getCurrentUsageCount())) {
+                    throw new BusinessServiceOperationException.CampaignNotFoundException("Campaign not found");
+                } else {
+                    if (campaign.getType() == CampaignType.AMOUNT) {
+                        AmountDiscount amountDiscount = new AmountDiscount(newlyRegisteredCampaignDiscount);
+                        BigDecimal totalPriceWithDiscount = amountDiscount.apply(basket.getPrice(), campaign.getDiscount());
+
+                        setterTotalPriceAndDiscountPrice(basket, totalPriceWithDiscount);
+
+                    } else {
+                        RateDiscount rateDiscount = new RateDiscount(newlyRegisteredCampaignDiscount);
+                        BigDecimal totalPriceWithDiscount = rateDiscount.apply(basket.getPrice(), campaign.getDiscount());
+
+                        setterTotalPriceAndDiscountPrice(basket, totalPriceWithDiscount);
+                    }
+                }
+            } else {
+                if (Objects.equals(campaign.getUsageLimit(), campaign.getCurrentUsageCount())) {
+                    throw new BusinessServiceOperationException.CampaignNotFoundException("Campaign not found");
+                } else {
+                    if (campaign.getType() == CampaignType.AMOUNT) {
+                        AmountDiscount amountDiscount = new AmountDiscount(price -> price);
+                        BigDecimal totalPriceWithDiscount = amountDiscount.apply(basket.getPrice(), campaign.getDiscount());
+
+                        setterTotalPriceAndDiscountPrice(basket, totalPriceWithDiscount);
+
+                    } else {
+                        RateDiscount rateDiscount = new RateDiscount(null);
+                        BigDecimal totalPriceWithDiscount = rateDiscount.apply(basket.getPrice(), campaign.getDiscount());
+
+                        setterTotalPriceAndDiscountPrice(basket, totalPriceWithDiscount);
+                    }
+                }
+            }
+            campaignHistoryService.create(customer.getId(), campaign.getId(), basket.getDiscountPrice());
+        }
         return basket;
     }
+
+    private void setterTotalPriceAndDiscountPrice(Basket basket, BigDecimal totalPriceWithDiscount) {
+        BigDecimal totalPrice = Calculator.getTotalPrice(totalPriceWithDiscount, basket.getTaxPrice(), basket.getShippingPrice());
+        basket.setDiscountPrice(basket.getPrice().subtract(totalPriceWithDiscount));
+        basket.setTotalPrice(totalPrice);
+    }
+
 
     @Override
     public CreateBasketResponse toCreateBasketResponse(Basket basket) {
@@ -83,7 +138,6 @@ public class BasketConverterImpl implements BasketConverter {
 
             basketItem.setQuantity(quantity);
             basketItem.setPrice(price);
-            basketItem.setDiscountPrice(Calculator.getDiscountPrice(price, quantity, DISCOUNT_RATE));
             basketItem.setTaxPrice(Calculator.getTaxPrice(price, quantity, TAX_RATE));
             basketItem.setShippingPrice(basketItem.getShippingPrice());
 
@@ -96,11 +150,11 @@ public class BasketConverterImpl implements BasketConverter {
         Set<BasketItem> basketItems = basket.getItems();
 
         BigDecimal price = Calculator.getItemListPrice(basketItems);
-        BigDecimal discountPrice = Calculator.getTotalDiscountPrice(basketItems);
+        BigDecimal discountPrice = BigDecimal.ZERO;
         BigDecimal taxPrice = Calculator.getTotalTaxPrice(basketItems);
         BigDecimal totalQuantity = Calculator.getTotalQuantity(basketItems);
         BigDecimal shippingPrice = Calculator.getTotalShippingPrice(basketItems);
-        BigDecimal totalPrice = Calculator.getTotalPrice(price, taxPrice, shippingPrice, discountPrice);
+        BigDecimal totalPrice = Calculator.getTotalPrice(price, taxPrice, shippingPrice);
 
         /* itemlist price without discount */
         basket.setPrice(price);
@@ -124,7 +178,6 @@ public class BasketConverterImpl implements BasketConverter {
                     productConverter.toGetBasketItemProductResponse(item.getProduct()),
                     item.getQuantity(),
                     item.getPrice(),
-                    item.getDiscountPrice(),
                     item.getTaxPrice(),
                     item.getShippingPrice()
             );

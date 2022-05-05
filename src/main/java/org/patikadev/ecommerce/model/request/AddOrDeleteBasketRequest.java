@@ -5,7 +5,6 @@ import org.patikadev.ecommerce.model.enums.AddOrDeleteStatus;
 
 import java.util.Set;
 
-public record AddOrDeleteBasketRequest(
-        Set<BasketItem> items,
-        AddOrDeleteStatus status) {
+public record AddOrDeleteBasketRequest(Set<BasketItem> items,
+                                       AddOrDeleteStatus status) {
 }

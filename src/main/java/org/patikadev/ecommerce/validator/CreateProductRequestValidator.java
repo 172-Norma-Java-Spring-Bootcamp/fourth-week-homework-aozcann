@@ -11,7 +11,6 @@ import java.util.Objects;
 public class CreateProductRequestValidator implements Validator<CreateProductRequest> {
     @Override
     public void validate(CreateProductRequest request) throws BaseValidationException {
-        // fail first approach.
         if (Objects.isNull(request)) {
             throw new ValidationOperationException.ProductNotValidException("Product can not be null or empty");
         }
@@ -27,7 +26,6 @@ public class CreateProductRequestValidator implements Validator<CreateProductReq
         if (Objects.isNull(request.price())) {
             throw new ValidationOperationException.ProductNotValidException("Product price can not be null or empty");
         }
-        // customer address should validate
 
     }
 

@@ -10,7 +10,7 @@ import java.util.Objects;
 import static java.math.BigDecimal.ZERO;
 
 @Component
-public class priceValidator implements Validator<BigDecimal> {
+public class PriceValidator implements Validator<BigDecimal> {
     @Override
     public void validate(BigDecimal price) throws BaseValidationException {
         if (price.compareTo(ZERO) < 0) {

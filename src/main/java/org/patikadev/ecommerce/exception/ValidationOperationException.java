@@ -29,7 +29,6 @@ public final class ValidationOperationException {
         }
     }
 
-
     public static class CustomerIDNotValidException extends BaseException {
         public CustomerIDNotValidException(String message) {
             super(message);
@@ -48,9 +47,23 @@ public final class ValidationOperationException {
         }
     }
 
-    public static class PaymemtNotValidException extends BaseException {
-        public PaymemtNotValidException(String message) {
+    public static class PaymentNotValidException extends BaseException {
+        public PaymentNotValidException(String message) {
             super(message);
         }
     }
+
+    public static class CampaignNotValidException extends BaseException {
+        public CampaignNotValidException(String message) {
+            super(message);
+        }
+    }
+
+    public static class CampaignDiscountValidException extends BaseException {
+        public CampaignDiscountValidException(String message) {
+            super(message);
+        }
+    }
+
+
 }

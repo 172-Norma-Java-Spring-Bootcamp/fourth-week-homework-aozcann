@@ -56,9 +56,9 @@ public class ProductConverterImpl implements ProductConverter {
 
     @Override
     public GetProductResponse toGetProductResponse(Product product) {
-        GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(),product.getBrand().getName());
-        GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(product.getCategory().getParent().getId(),product.getCategory().getParent().getName());
-        GetCategoryResponse getCategoryResponse = new GetCategoryResponse(product.getCategory().getId(),getCategoryParentResponse,product.getCategory().getName());
+        GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(), product.getBrand().getName());
+        GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(product.getCategory().getParent().getId(), product.getCategory().getParent().getName());
+        GetCategoryResponse getCategoryResponse = new GetCategoryResponse(product.getCategory().getId(), getCategoryParentResponse, product.getCategory().getName());
         return new GetProductResponse(product.getId(),
                 product.getName(),
                 product.getPrice(),
@@ -70,7 +70,7 @@ public class ProductConverterImpl implements ProductConverter {
 
     @Override
     public GetBasketItemProductResponse toGetBasketItemProductResponse(Product product) {
-        GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(),product.getBrand().getName());
+        GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(), product.getBrand().getName());
         return new GetBasketItemProductResponse(product.getId(),
                 product.getName(),
                 product.getPrice(),
