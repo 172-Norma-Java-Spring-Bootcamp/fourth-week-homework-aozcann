@@ -58,7 +58,7 @@ public class ProductConverterImpl implements ProductConverter {
     public GetProductResponse toGetProductResponse(Product product) {
         GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(), product.getBrand().getName());
         GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(product.getCategory().getParent().getId(), product.getCategory().getParent().getName());
-        GetCategoryResponse getCategoryResponse = new GetCategoryResponse(product.getCategory().getId(), getCategoryParentResponse, product.getCategory().getName());
+        GetCategoryResponse getCategoryResponse = new GetCategoryResponse(product.getCategory().getId(), product.getCategory().getName(), getCategoryParentResponse);
         return new GetProductResponse(product.getId(),
                 product.getName(),
                 product.getPrice(),

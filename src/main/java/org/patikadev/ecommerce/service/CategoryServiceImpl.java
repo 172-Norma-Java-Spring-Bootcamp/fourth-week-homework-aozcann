@@ -24,7 +24,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CreateCategoryResponse create(CreateCategoryRequest request) {
-        Category category = categoryConverter.toCreateCategory(request);
+
+        Category parent = categoryRepository
+                .findByIdAndIsDeleted(request.parent().getId(), false)
+                .orElseThrow(() -> new BusinessServiceOperationException.CategoryParentNotFoundException("Category parent not found"));
+
+        Category category = categoryConverter.toCreateCategory(request,parent);
         categoryRepository.save(category);
         log.info("Category created successfully by id -> {}", category.getId());
         return categoryConverter.toCreateCategoryResponse(category);
@@ -32,7 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public GetCategoryResponse getCategory(Long id) {
-        Category category = categoryRepository.findByIdAndIsDeleted(id, false).orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found."));
+        Category category = categoryRepository.
+                findByIdAndIsDeleted(id, false)
+                .orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found."));
         log.info("Category returned successfully by id -> {}", id);
         return categoryConverter.toGetCategoryResponse(category);
     }

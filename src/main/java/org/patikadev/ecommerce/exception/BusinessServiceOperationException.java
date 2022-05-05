@@ -40,6 +40,11 @@ public final class BusinessServiceOperationException {
             super(message);
         }
     }
+    public static class CategoryParentNotFoundException extends BaseException {
+        public CategoryParentNotFoundException(String message) {
+            super(message);
+        }
+    }
 
     public static class CategoryAlreadyDeletedException extends BaseException {
         public CategoryAlreadyDeletedException(String message) {
@@ -83,10 +88,10 @@ public final class BusinessServiceOperationException {
         }
     }
 
-    public static class CampaignCodeNotFoundException extends BaseException {
-        public CampaignCodeNotFoundException(String message) {
+    public static class DiscountAmountCanNotBeBiggerThanTotalBasketPrice extends BaseException {
+        public DiscountAmountCanNotBeBiggerThanTotalBasketPrice(String message) {
             super(message);
         }
-
     }
+
 }

@@ -29,6 +29,5 @@ public class BasketController {
                                                                       @PathVariable Long id) {
         idValidator.validate(id);
         return ResponseEntity.ok(basketService.addOrDeleteBasketItem(request, id));
-
     }
 }

@@ -2,7 +2,6 @@ package org.patikadev.ecommerce.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.patikadev.ecommerce.model.request.CreateCampaignRequest;
-import org.patikadev.ecommerce.model.request.GetCampaignCodeRequest;
 import org.patikadev.ecommerce.model.response.CreateCampaignResponse;
 import org.patikadev.ecommerce.model.response.GetCampaignResponse;
 import org.patikadev.ecommerce.service.CampaignService;
@@ -19,7 +18,7 @@ public class CampaignController {
 
     private final CampaignService campaignService;
     private final Validator<CreateCampaignRequest> createCampaignRequestValidator;
-    private final Validator<Long> idValitor;
+    private final Validator<Long> idValidator;
 
     @PostMapping
     public ResponseEntity<CreateCampaignResponse> create(@RequestBody CreateCampaignRequest request) {
@@ -29,7 +28,7 @@ public class CampaignController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GetCampaignResponse> getCampaign(@PathVariable Long id) {
-        idValitor.validate(id);
+        idValidator.validate(id);
         return ResponseEntity.ok(campaignService.getCampaignById(id));
     }
 
@@ -39,7 +38,7 @@ public class CampaignController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<GetCampaignResponse>> getAllCampaign(){
+    public ResponseEntity<Collection<GetCampaignResponse>> getAllCampaign() {
         return ResponseEntity.ok(campaignService.getAllCampaign());
     }
 }
