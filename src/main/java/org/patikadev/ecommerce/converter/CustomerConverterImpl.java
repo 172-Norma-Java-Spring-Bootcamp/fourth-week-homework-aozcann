@@ -36,6 +36,7 @@ public class CustomerConverterImpl implements CustomerConverter {
         return customer;
     }
 
+    // It updates just sending fields in request
     @Override
     public Customer toUpdateCustomer(CreateOrUpdateCustomerRequest request, Customer customer) {
         if (Objects.nonNull(request.userName())) {

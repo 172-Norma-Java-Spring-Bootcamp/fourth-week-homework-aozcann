@@ -37,7 +37,7 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public CreateBasketResponse addOrDeleteBasketItem(AddOrDeleteBasketRequest request, Long id) {
+    public CreateBasketResponse addOrDeleteBasketItems(AddOrDeleteBasketRequest request, Long id) {
         Basket basket = basketRepository.findById(id).orElseThrow(() -> new BusinessServiceOperationException.BasketNotFoundException("Basket not found"));
         Set<BasketItem> currentItems = basket.getItems();
         Set<BasketItem> newItems = request.items();
@@ -50,10 +50,12 @@ public class BasketServiceImpl implements BasketService {
                 if (request.status().equals(AddOrDeleteStatus.ADD)) {
                     // If AddOrDeleteStatus is ADD, update currentItem quantity.
                     currentItem.setQuantity(currentItem.getQuantity().add(newItem.getQuantity()));
+                    log.info("Basket item added to basket successfully by basket id -> {}", basket.getId());
                 } else {
                     int quantity = currentItem.getQuantity().subtract(newItem.getQuantity()).compareTo(BigDecimal.ZERO);
                     if (quantity < 0) {
                         // Basket item quantity can not be less than zero
+                        log.error("Basket item quantity can not be less than zero -> basket id {}", basket.getId());
                         throw new BusinessServiceOperationException.BasketItemQuantityCanNotBeLessThanZero("Basket item quantity can not be less than zero");
                     } else if (quantity == 0) {
                         // If quantity is zero, remove current item from the basket item list
@@ -63,13 +65,16 @@ public class BasketServiceImpl implements BasketService {
                         // If AddOrDeleteStatus is DELETE, update currentItem quantity.
                         currentItem.setQuantity(currentItem.getQuantity().subtract(newItem.getQuantity()));
                     }
+                    log.info("Basket item deleted from basket successfully by basket id -> {}", basket.getId());
                 }
             } else if (request.status().equals(AddOrDeleteStatus.ADD)) {
                 // If it not contains same product and status is ADD, the newItem will be added on the basket items.
                 currentItems.add(newItem);
+                log.info("Basket item added to basket successfully by basket id -> {}", basket.getId());
             } else {
                 // If it not contains same product and status is DELETE, throws exceptions.
                 // Because non-existent product can not be deleted from the current basket item list
+                log.error("Product not found by id {} -> basket id {}", newItem.getProduct().getId(), basket.getId());
                 throw new BusinessServiceOperationException.ProductNotFoundException("Product not found");
             }
         }
@@ -78,6 +83,7 @@ public class BasketServiceImpl implements BasketService {
         basket.setItems(currentItems);
         basketConverter.toReCalculateBasketPrice(basket);
         basketRepository.save(basket);
+        log.info("Basket {} items successfully by id -> {}", request.status(), basket.getId());
 
         return basketConverter.toCreateBasketResponse(basket);
     }

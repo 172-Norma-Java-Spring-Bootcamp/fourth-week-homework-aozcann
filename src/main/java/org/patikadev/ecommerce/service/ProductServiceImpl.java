@@ -65,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
                     ProductAlreadyDeletedException("Product already deleted.");
         }
         product.setDeleted(true);
-        log.info("Product deleted successfully by id -> {}", id);
+        log.info("Product soft deleted successfully by id -> {}", id);
         product.setDeletedAt(new Date());
         product.setDeletedBy("AhmetOzcan");
         productRepository.save(product);

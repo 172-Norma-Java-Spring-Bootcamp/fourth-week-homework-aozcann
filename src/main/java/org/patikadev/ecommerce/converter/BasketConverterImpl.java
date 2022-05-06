@@ -114,6 +114,7 @@ public class BasketConverterImpl implements BasketConverter {
         return basket;
     }
 
+    // It set total price and discount price from basket
     private void setterTotalPriceAndDiscountPrice(Basket basket, BigDecimal totalPriceWithDiscount) {
         BigDecimal totalPrice = Calculator.getTotalPrice(totalPriceWithDiscount, basket.getTaxPrice(), basket.getShippingPrice());
         basket.setDiscountPrice(basket.getPrice().subtract(totalPriceWithDiscount));

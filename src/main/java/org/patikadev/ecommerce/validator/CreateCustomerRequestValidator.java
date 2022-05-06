@@ -12,7 +12,6 @@ import java.util.Objects;
 public class CreateCustomerRequestValidator implements Validator<CreateOrUpdateCustomerRequest> {
     @Override
     public void validate(CreateOrUpdateCustomerRequest request) throws BaseValidationException {
-        // fail first approach.
         if (Objects.isNull(request)) {
             throw new ValidationOperationException.CustomerNotValidException("Customer can not be null or empty");
         }

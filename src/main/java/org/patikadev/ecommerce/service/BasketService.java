@@ -7,5 +7,5 @@ import org.patikadev.ecommerce.model.response.CreateBasketResponse;
 public interface BasketService {
     CreateBasketResponse create(CreateBasketRequest request);
 
-    CreateBasketResponse addOrDeleteBasketItem(AddOrDeleteBasketRequest request, Long id);
+    CreateBasketResponse addOrDeleteBasketItems(AddOrDeleteBasketRequest request, Long id);
 }

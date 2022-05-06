@@ -24,6 +24,8 @@ public class CampaignHistoryServiceImpl implements CampaignHistoryService {
         campaignHistory.setDiscountAmount(discountAmount);
         campaignHistory.setCreatedAt(new Date());
         campaignHistory.setCreatedBy("AhmetOzcan");
-        campaignHistoryRepository.save(campaignHistory);
+        CampaignHistory savedCampaignHistory = campaignHistoryRepository.save(campaignHistory);
+        log.info("campaignHistory returned successfully by id -> {}", savedCampaignHistory.getId());
+
     }
 }

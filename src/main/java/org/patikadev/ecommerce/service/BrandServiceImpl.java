@@ -26,6 +26,7 @@ public class BrandServiceImpl implements BrandService {
     public CreateBrandResponse create(CreateBrandRequest request) {
         Brand brand = brandConverter.toCreateBrand(request);
         brandRepository.save(brand);
+        log.info("Brand created successfully by id -> {}", brand.getId());
         return brandConverter.toCreateBrandResponse(brand);
     }
 
@@ -56,6 +57,7 @@ public class BrandServiceImpl implements BrandService {
                 .orElseThrow(() -> new BusinessServiceOperationException.BrandNotFoundException("Brand not found"));
         if (isHardDeleted) {
             brandRepository.delete(brand);
+            log.info("Brand hard delete successfully by id -> {}", brand.getId());
             return true;
         }
         if (brand.isDeleted()) {
@@ -66,7 +68,7 @@ public class BrandServiceImpl implements BrandService {
         brand.setDeletedAt(new Date());
         brand.setDeletedBy("AhmetOzcan");
         brandRepository.save(brand);
-        log.info("Brand deleted successfully.");
+        log.info("Brand soft deleted successfully by id -> {}", brand.getId());
 
         return brand.isDeleted();
     }

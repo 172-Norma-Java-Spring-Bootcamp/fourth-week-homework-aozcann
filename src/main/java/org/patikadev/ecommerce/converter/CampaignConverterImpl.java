@@ -12,6 +12,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Component
 public class CampaignConverterImpl implements CampaignConverter {
+
     @Override
     public Campaign toCreateCampaign(CreateCampaignRequest request) {
         Campaign campaign = new Campaign();

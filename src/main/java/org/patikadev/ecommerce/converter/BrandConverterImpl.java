@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Component
 public class BrandConverterImpl implements BrandConverter {
+
     @Override
     public Brand toCreateBrand(CreateBrandRequest request) {
         Brand brand = new Brand();

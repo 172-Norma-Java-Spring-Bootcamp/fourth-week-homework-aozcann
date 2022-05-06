@@ -31,9 +31,13 @@ public class ProductConverterImpl implements ProductConverter {
         product.setCreatedAt(new Date());
         product.setCreatedBy("AhmetOzcan");
 
-        Brand brand = brandRepository.findByIdAndIsDeleted(request.brand().id(), false).orElseThrow(() -> new BusinessServiceOperationException.BrandNotFoundException("Brand not found"));
+        Brand brand = brandRepository
+                .findByIdAndIsDeleted(request.brand().id(), false)
+                .orElseThrow(() -> new BusinessServiceOperationException.BrandNotFoundException("Brand not found"));
 
-        Category category = categoryRepository.findByIdAndIsDeleted(request.category().id(), false).orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found"));
+        Category category = categoryRepository
+                .findByIdAndIsDeleted(request.category().id(), false)
+                .orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found"));
 
         product.setCategory(category);
         product.setBrand(brand);

@@ -28,6 +28,6 @@ public class BasketController {
     public ResponseEntity<CreateBasketResponse> addOrDeleteBasketItem(@RequestBody AddOrDeleteBasketRequest request,
                                                                       @PathVariable Long id) {
         idValidator.validate(id);
-        return ResponseEntity.ok(basketService.addOrDeleteBasketItem(request, id));
+        return ResponseEntity.ok(basketService.addOrDeleteBasketItems(request, id));
     }
 }

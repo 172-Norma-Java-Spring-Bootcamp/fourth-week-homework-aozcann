@@ -37,9 +37,11 @@ public class OrderServiceImpl implements OrderService {
         if (isPaid) {
             order.setPaymentStatus(PaymentStatus.PAYMENT_SUCCESS);
             order.setStatus(OrderStatus.ORDER_TAKEN);
+            log.info("Payment received successfully.");
         }
 
         Order savedOrder = orderRepository.save(order);
+        log.info("Order created successfully by id -> {}", savedOrder.getId());
 
         return new PaymentResponse(savedOrder.getId(),
                 savedOrder.getPaymentStatus(),
@@ -53,6 +55,8 @@ public class OrderServiceImpl implements OrderService {
         order.setUpdatedAt(new Date());
         order.setUpdatedBy("AhmetOzcan");
         Order savedOrder = orderRepository.save(order);
+        log.info("Order status updated successfully by id -> {}", savedOrder.getId());
+
         return new OrderUpdateResponse(savedOrder.getId(), savedOrder.getStatus());
     }
 

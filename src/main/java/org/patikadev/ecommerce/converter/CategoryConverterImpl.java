@@ -38,6 +38,7 @@ public class CategoryConverterImpl implements CategoryConverter {
     @Override
     public GetCategoryResponse toGetCategoryResponse(Category category) {
 
+        // If the category does not have any parent or parent already is deleted, it does not return in response.
         if (Objects.nonNull(category.getParent())
                 && Objects.nonNull(categoryRepository.findByIdAndIsDeleted(category.getParent().getId(), false).orElse(null))) {
             GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(category.getParent().getId(), category.getParent().getName());
