@@ -28,7 +28,6 @@ public class CreateCustomerRequestValidator implements Validator<CreateOrUpdateC
         if (Objects.isNull(request.gender())) {
             throw new ValidationOperationException.CustomerNotValidException("Customer gender can not be null or empty");
         }
-        // customer address should validate
 
     }
 

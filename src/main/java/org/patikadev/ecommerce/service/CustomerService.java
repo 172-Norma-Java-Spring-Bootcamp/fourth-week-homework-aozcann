@@ -15,5 +15,5 @@ public interface CustomerService {
 
     boolean deleteCustomerById(Long id, boolean isHardDeleted);
 
-    GetCustomerResponse updateCustomer(CreateOrUpdateCustomerRequest request,Long id);
+    GetCustomerResponse updateCustomer(CreateOrUpdateCustomerRequest request, Long id);
 }

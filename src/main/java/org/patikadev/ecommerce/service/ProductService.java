@@ -13,5 +13,5 @@ public interface ProductService {
 
     Collection<GetProductResponse> getAllProduct();
 
-    boolean deleteProductById(Long id,boolean isHardDeleted);
+    boolean deleteProductById(Long id, boolean isHardDeleted);
 }

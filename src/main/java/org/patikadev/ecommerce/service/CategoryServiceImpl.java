@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .findByIdAndIsDeleted(request.parent().getId(), false)
                 .orElseThrow(() -> new BusinessServiceOperationException.CategoryParentNotFoundException("Category parent not found"));
 
-        Category category = categoryConverter.toCreateCategory(request,parent);
+        Category category = categoryConverter.toCreateCategory(request, parent);
         categoryRepository.save(category);
         log.info("Category created successfully by id -> {}", category.getId());
         return categoryConverter.toCreateCategoryResponse(category);
@@ -73,6 +73,4 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.save(category);
         return true;
     }
-
-
 }

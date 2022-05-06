@@ -4,11 +4,9 @@ package org.patikadev.ecommerce.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 @Getter
@@ -19,6 +17,5 @@ public class Category extends BaseExtendedModel {
     private Category parent;
 
     private String name;
-//    @OneToMany(mappedBy = "category",cascade = CascadeType.PERSIST)
-//    private Set<Product> product = new HashSet<>();
+
 }

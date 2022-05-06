@@ -13,5 +13,5 @@ public interface BrandService {
 
     Collection<GetBrandResponse> getAllBrand();
 
-    boolean deleteBrandById(Long id,boolean isHardDeleted);
+    boolean deleteBrandById(Long id, boolean isHardDeleted);
 }

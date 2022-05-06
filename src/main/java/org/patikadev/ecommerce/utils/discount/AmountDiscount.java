@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 public class AmountDiscount extends CampaignDiscountDecorator {
 
-
     public AmountDiscount(CampaignDiscount campaignDiscount) {
         super(campaignDiscount);
     }

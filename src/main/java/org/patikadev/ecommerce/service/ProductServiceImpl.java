@@ -53,18 +53,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean deleteProductById(Long id, boolean isHardDeleted) throws BaseException {
-    Product product = productRepository.findById(id).orElseThrow(() -> new BusinessServiceOperationException.ProductNotFoundException("Product not found") );
-    if (isHardDeleted){
-        productRepository.delete(product);
-        log.info("Product hard deleted successfully.");
-        return true;
-    }
-    if (product.isDeleted()){
-        log.error("Product already deleted by id -> {}",id);
-        throw new BusinessServiceOperationException.
-                ProductAlreadyDeletedException("Product already deleted.");
-    }
-    product.setDeleted(true);
+        Product product = productRepository.findById(id).orElseThrow(() -> new BusinessServiceOperationException.ProductNotFoundException("Product not found"));
+        if (isHardDeleted) {
+            productRepository.delete(product);
+            log.info("Product hard deleted successfully.");
+            return true;
+        }
+        if (product.isDeleted()) {
+            log.error("Product already deleted by id -> {}", id);
+            throw new BusinessServiceOperationException.
+                    ProductAlreadyDeletedException("Product already deleted.");
+        }
+        product.setDeleted(true);
         log.info("Product deleted successfully by id -> {}", id);
         product.setDeletedAt(new Date());
         product.setDeletedBy("AhmetOzcan");

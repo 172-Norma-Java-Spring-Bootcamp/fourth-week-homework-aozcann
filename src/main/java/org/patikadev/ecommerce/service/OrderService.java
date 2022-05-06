@@ -1,6 +1,5 @@
 package org.patikadev.ecommerce.service;
 
-import org.patikadev.ecommerce.model.Basket;
 import org.patikadev.ecommerce.model.enums.OrderStatus;
 import org.patikadev.ecommerce.model.request.PaymentRequest;
 import org.patikadev.ecommerce.model.response.OrderUpdateResponse;
@@ -10,6 +9,6 @@ public interface OrderService {
 
     PaymentResponse payment(PaymentRequest request);
 
-    OrderUpdateResponse updateStatus(Long id,OrderStatus status);
+    OrderUpdateResponse updateStatus(Long id, OrderStatus status);
 
 }

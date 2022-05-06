@@ -31,22 +31,20 @@ public class ProductController {
         return ResponseEntity.ok(productService.create(request));
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<GetProductResponse> getProduct(@PathVariable Long id) {
         idValidator.validate(id);
         return ResponseEntity.ok(productService.getProduct(id));
-
     }
 
     @GetMapping
-    public ResponseEntity<Collection<GetProductResponse>> getAllProduct(){
+    public ResponseEntity<Collection<GetProductResponse>> getAllProduct() {
         return ResponseEntity.ok(productService.getAllProduct());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProductById(@PathVariable Long id,
-                                               @RequestParam(name = "isHardDeleted",required = false) boolean isHardDeleted){
+                                               @RequestParam(name = "isHardDeleted", required = false) boolean isHardDeleted) {
         idValidator.validate(id);
         return ResponseEntity.ok(productService.deleteProductById(id, isHardDeleted));
     }

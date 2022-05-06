@@ -16,7 +16,6 @@ public class CampaignHistoryServiceImpl implements CampaignHistoryService {
 
     private final CampaignHistoryRepository campaignHistoryRepository;
 
-
     @Override
     public void create(Long customerId, Long campaignId, BigDecimal discountAmount) {
         CampaignHistory campaignHistory = new CampaignHistory();

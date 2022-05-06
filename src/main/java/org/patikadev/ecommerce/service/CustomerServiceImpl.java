@@ -29,14 +29,14 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerConverter.toCreateCustomer(request);
         customerRepository.save(customer);
         log.info("Customer created successfully by id -> {}", customer.getId());
-        return new  CreateCustomerResponse(customer.getId());
+        return new CreateCustomerResponse(customer.getId());
     }
 
     @Override
     public GetCustomerResponse updateCustomer(CreateOrUpdateCustomerRequest request, Long id) {
-        Customer customer = customerRepository.findByIdAndIsDeleted(id,false)
+        Customer customer = customerRepository.findByIdAndIsDeleted(id, false)
                 .orElseThrow(() -> new BusinessServiceOperationException.CustomerNotFoundException("Customer not found"));
-        Customer updateCustomer = customerConverter.toUpdateCustomer(request,customer);
+        Customer updateCustomer = customerConverter.toUpdateCustomer(request, customer);
         customer.setUpdatedAt(new Date());
         customer.setUpdatedBy("AhmetOzcan");
         customerRepository.save(updateCustomer);
@@ -86,7 +86,4 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customer.isDeleted();
     }
-
-
-
 }

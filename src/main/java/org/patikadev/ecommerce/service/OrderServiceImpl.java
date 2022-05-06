@@ -13,8 +13,6 @@ import org.patikadev.ecommerce.model.request.PaymentRequest;
 import org.patikadev.ecommerce.model.response.OrderUpdateResponse;
 import org.patikadev.ecommerce.model.response.PaymentResponse;
 import org.patikadev.ecommerce.repository.BasketRepository;
-import org.patikadev.ecommerce.repository.CampaignHistoryRepository;
-import org.patikadev.ecommerce.repository.CampaignRepository;
 import org.patikadev.ecommerce.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +28,6 @@ public class OrderServiceImpl implements OrderService {
     private final BasketRepository basketRepository;
     private final OrderConverter orderConverter;
     private final OrderRepository orderRepository;
-    private final CampaignRepository campaignRepository;
-    private final CampaignHistoryRepository campaignHistoryRepository;
 
     @Override
     public PaymentResponse payment(PaymentRequest request) {
@@ -59,7 +55,6 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
         return new OrderUpdateResponse(savedOrder.getId(), savedOrder.getStatus());
     }
-
 
     private boolean paymentCheck(BigDecimal totalPrice, PaymentType paymentType, String cardNumber, String cardOwnerName, String cardLastDate, String ccv) {
 

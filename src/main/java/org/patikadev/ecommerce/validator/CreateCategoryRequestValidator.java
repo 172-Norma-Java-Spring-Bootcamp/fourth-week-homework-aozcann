@@ -2,7 +2,6 @@ package org.patikadev.ecommerce.validator;
 
 import org.patikadev.ecommerce.exception.BaseValidationException;
 import org.patikadev.ecommerce.exception.ValidationOperationException;
-import org.patikadev.ecommerce.model.request.CreateBrandRequest;
 import org.patikadev.ecommerce.model.request.CreateCategoryRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

@@ -41,33 +41,33 @@ public class CustomerConverterImpl implements CustomerConverter {
         if (Objects.nonNull(request.userName())) {
             customer.setUsername(request.userName());
         }
-        if (Objects.nonNull(request.email())){
+        if (Objects.nonNull(request.email())) {
             customer.setUsername(request.email());
         }
-        if (Objects.nonNull(request.identity())){
+        if (Objects.nonNull(request.identity())) {
             customer.setIdentity(request.identity());
         }
-        if (Objects.nonNull(request.gender())){
+        if (Objects.nonNull(request.gender())) {
             customer.setGender(request.gender());
         }
-        if (Objects.nonNull(request.password())){
+        if (Objects.nonNull(request.password())) {
             customer.setPassword(request.password());
         }
-        if (Objects.nonNull(request.customerAddress())){
+        if (Objects.nonNull(request.customerAddress())) {
             CustomerAddress customerAddress = customer.getCustomerAddress();
-            if (Objects.nonNull(request.customerAddress().phoneNumber())){
+            if (Objects.nonNull(request.customerAddress().phoneNumber())) {
                 customerAddress.setPhoneNumber(request.customerAddress().phoneNumber());
             }
-            if (Objects.nonNull(request.customerAddress().country())){
+            if (Objects.nonNull(request.customerAddress().country())) {
                 customerAddress.setCountry(request.customerAddress().country());
             }
-            if (Objects.nonNull(request.customerAddress().city())){
+            if (Objects.nonNull(request.customerAddress().city())) {
                 customerAddress.setCity(request.customerAddress().city());
             }
-            if (Objects.nonNull(request.customerAddress().postalCode())){
+            if (Objects.nonNull(request.customerAddress().postalCode())) {
                 customerAddress.setPostalCode(request.customerAddress().postalCode());
             }
-            if (Objects.nonNull(request.customerAddress().description())){
+            if (Objects.nonNull(request.customerAddress().description())) {
                 customerAddress.setDescription(request.customerAddress().description());
             }
             customerAddress.setUpdatedAt(new Date());
@@ -80,7 +80,6 @@ public class CustomerConverterImpl implements CustomerConverter {
         return customer;
     }
 
-
     @Override
     public GetCustomerResponse toGetCustomerResponse(Customer customer) {
         return new GetCustomerResponse(customer.getId(),
@@ -90,7 +89,6 @@ public class CustomerConverterImpl implements CustomerConverter {
                 toGetCustomerAddressResponse(customer.getCustomerAddress()));
     }
 
-
     private GetCustomerAddressResponse toGetCustomerAddressResponse(CustomerAddress customerAddress) {
         return new GetCustomerAddressResponse(customerAddress.getPhoneNumber(),
                 customerAddress.getCountry(),
@@ -98,5 +96,4 @@ public class CustomerConverterImpl implements CustomerConverter {
                 customerAddress.getPostalCode(),
                 customerAddress.getDescription());
     }
-
 }

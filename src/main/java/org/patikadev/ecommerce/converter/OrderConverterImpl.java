@@ -14,7 +14,6 @@ import java.util.Date;
 @Component
 public class OrderConverterImpl implements OrderConverter {
 
-
     @Override
     public Order toCreateOrder(PaymentRequest request, Basket basket) {
 
@@ -30,6 +29,7 @@ public class OrderConverterImpl implements OrderConverter {
         order.setCustomer(basket.getCustomer());
         order.setCreatedAt(new Date());
         order.setCreatedBy("AhmetOzcan");
+
         return order;
     }
 }

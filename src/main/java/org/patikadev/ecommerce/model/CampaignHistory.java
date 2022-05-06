@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-public class CampaignHistory extends BaseExtendedModel{
+public class CampaignHistory extends BaseExtendedModel {
 
     Long customerId;
     Long campaignId;

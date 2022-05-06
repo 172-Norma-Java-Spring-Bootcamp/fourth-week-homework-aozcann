@@ -16,7 +16,6 @@ public class Basket extends BaseExtendedModel {
     @Column(nullable = false)
     private BigDecimal price;
 
-//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
@@ -25,13 +24,9 @@ public class Basket extends BaseExtendedModel {
     private BigDecimal shippingPrice = BigDecimal.ZERO;
     private BigDecimal totalQuantity = BigDecimal.ZERO;
 
-
     @Column(nullable = false)
     private BigDecimal totalPrice;
 
-//    @OneToMany(mappedBy = "basket",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<BasketItem> items = new HashSet<>();
-
-
 }

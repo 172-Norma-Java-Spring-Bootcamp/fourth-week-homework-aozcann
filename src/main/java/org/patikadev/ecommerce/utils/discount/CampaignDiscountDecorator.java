@@ -14,11 +14,8 @@ public class CampaignDiscountDecorator implements CampaignDiscount {
         return campaignDiscount.apply(price);
     }
 
-
     public BigDecimal apply(BigDecimal price, BigDecimal discount) {
-
         return campaignDiscount.apply(price);
     }
-
 
 }

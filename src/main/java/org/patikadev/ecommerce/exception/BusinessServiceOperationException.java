@@ -11,12 +11,6 @@ public final class BusinessServiceOperationException {
         }
     }
 
-    public static class CustomerAddressIsNotEmptyException extends BaseException {
-        public CustomerAddressIsNotEmptyException(String message) {
-            super(message);
-        }
-    }
-
     public static class CustemerAlreadyDeletedException extends BaseException {
         public CustemerAlreadyDeletedException(String message) {
             super(message);
@@ -40,14 +34,9 @@ public final class BusinessServiceOperationException {
             super(message);
         }
     }
+
     public static class CategoryParentNotFoundException extends BaseException {
         public CategoryParentNotFoundException(String message) {
-            super(message);
-        }
-    }
-
-    public static class CategoryAlreadyDeletedException extends BaseException {
-        public CategoryAlreadyDeletedException(String message) {
             super(message);
         }
     }
@@ -84,6 +73,12 @@ public final class BusinessServiceOperationException {
 
     public static class CampaignNotFoundException extends BaseException {
         public CampaignNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class CampaignOverLimitException extends BaseException {
+        public CampaignOverLimitException(String message) {
             super(message);
         }
     }

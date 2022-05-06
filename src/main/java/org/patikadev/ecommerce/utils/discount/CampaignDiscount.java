@@ -6,5 +6,4 @@ public interface CampaignDiscount {
 
     BigDecimal apply(BigDecimal price);
 
-//    BigDecimal apply(BigDecimal price, BigDecimal discount);
 }

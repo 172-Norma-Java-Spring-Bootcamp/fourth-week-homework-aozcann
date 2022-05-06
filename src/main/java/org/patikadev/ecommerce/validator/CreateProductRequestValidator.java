@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
+
 @Component
 public class CreateProductRequestValidator implements Validator<CreateProductRequest> {
     @Override
@@ -26,7 +27,5 @@ public class CreateProductRequestValidator implements Validator<CreateProductReq
         if (Objects.isNull(request.price())) {
             throw new ValidationOperationException.ProductNotValidException("Product price can not be null or empty");
         }
-
     }
-
 }

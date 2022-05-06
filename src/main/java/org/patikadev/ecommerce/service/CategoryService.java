@@ -14,5 +14,5 @@ public interface CategoryService {
 
     Collection<GetCategoryResponse> getAllCategory();
 
-    boolean deleteCategoryById(Long id,boolean isHardDeleted);
+    boolean deleteCategoryById(Long id, boolean isHardDeleted);
 }

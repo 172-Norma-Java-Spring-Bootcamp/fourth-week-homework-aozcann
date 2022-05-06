@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Campaign extends BaseExtendedModel{
+public class Campaign extends BaseExtendedModel {
 
     String name;
     String code;
@@ -25,10 +25,5 @@ public class Campaign extends BaseExtendedModel{
     Date startDate; // Beginning of validity date
     @JsonProperty("dateOfEnd")
     Date endDate; // Ending of validity date
-
-//    @ManyToOne
-//    Customer customer;
-
-
 
 }

@@ -5,5 +5,5 @@ import org.patikadev.ecommerce.model.Order;
 import org.patikadev.ecommerce.model.request.PaymentRequest;
 
 public interface OrderConverter {
-    Order toCreateOrder(PaymentRequest request,Basket basket);
+    Order toCreateOrder(PaymentRequest request, Basket basket);
 }

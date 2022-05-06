@@ -79,6 +79,4 @@ public class ProductConverterImpl implements ProductConverter {
                 getBrandResponse,
                 product.getCategory().getId());
     }
-
-
 }

@@ -1,6 +1,6 @@
 package org.patikadev.ecommerce.model.request;
 
-import org.patikadev.ecommerce.model.Gender;
+import org.patikadev.ecommerce.model.enums.Gender;
 
 public record CreateOrUpdateCustomerRequest(String userName,
                                             String email,

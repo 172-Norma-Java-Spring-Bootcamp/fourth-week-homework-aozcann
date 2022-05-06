@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
@@ -14,9 +13,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class BasketItem extends BaseExtendedModel {
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Basket basket;
 
     @ManyToOne(optional = false)
     private Product product;

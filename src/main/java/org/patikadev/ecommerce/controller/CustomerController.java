@@ -37,7 +37,7 @@ public class CustomerController {
     public ResponseEntity<GetCustomerResponse> update(@RequestBody CreateOrUpdateCustomerRequest request,
                                                       @PathVariable Long id) {
         idValidator.validate(id);
-        return ResponseEntity.ok(customerService.updateCustomer(request,id));
+        return ResponseEntity.ok(customerService.updateCustomer(request, id));
     }
 
     @GetMapping

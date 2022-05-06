@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.Optional;
+
 @Repository
 public interface CampaignRepository extends JpaRepository<Campaign, Long> {
 
-    Optional<Campaign> findByCodeAndIsDeleted(String code,boolean isDeleted);
+    Optional<Campaign> findByCodeAndIsDeleted(String code, boolean isDeleted);
 
     Collection<Campaign> findAllByIsDeleted(boolean isDeleted);
 }

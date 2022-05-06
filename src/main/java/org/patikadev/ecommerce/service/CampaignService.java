@@ -1,7 +1,6 @@
 package org.patikadev.ecommerce.service;
 
 import org.patikadev.ecommerce.model.request.CreateCampaignRequest;
-import org.patikadev.ecommerce.model.request.GetCampaignCodeRequest;
 import org.patikadev.ecommerce.model.response.CreateCampaignResponse;
 import org.patikadev.ecommerce.model.response.GetCampaignResponse;
 

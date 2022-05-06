@@ -7,7 +7,6 @@ import java.util.Set;
 
 import static java.math.BigDecimal.ZERO;
 
-
 public class Calculator {
 
     public static BigDecimal getItemListPrice(Set<BasketItem> basketItems) {
@@ -16,18 +15,6 @@ public class Calculator {
             totalItemListPrice = totalItemListPrice.add(basketItem.getPrice().multiply(basketItem.getQuantity()));
         }
         return totalItemListPrice;
-    }
-
-    public static BigDecimal getDiscountPrice(BigDecimal price, BigDecimal quantity, BigDecimal discountRate) {
-        return price.multiply(quantity).multiply(discountRate);
-    }
-
-    public static BigDecimal getTotalDiscountPrice(Set<BasketItem> basketItems) {
-        BigDecimal totalDiscountPrice = ZERO;
-        for (BasketItem basketItem : basketItems) {
-            totalDiscountPrice = totalDiscountPrice.add(basketItem.getDiscountPrice());
-        }
-        return totalDiscountPrice;
     }
 
     public static BigDecimal getTaxPrice(BigDecimal price, BigDecimal quantity, BigDecimal taxRate) {
