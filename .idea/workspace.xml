@@ -133,7 +133,8 @@
       <workItem from="1650305388014" duration="1420000" />
       <workItem from="1650395697565" duration="50107000" />
       <workItem from="1650897991161" duration="38440000" />
-      <workItem from="1650993975113" duration="126748000" />
+      <workItem from="1650993975113" duration="132558000" />
+      <workItem from="1652108049390" duration="4371000" />
     </task>
     <servers />
   </component>
@@ -157,16 +158,8 @@
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
-          <line>40</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/ProductConverterImpl.java</url>
-          <line>62</line>
+          <line>63</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -176,12 +169,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/utils/discount/CampaignDiscountDecorator.java</url>
-          <line>19</line>
+          <line>23</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/utils/discount/CampaignDiscountDecorator.java</url>
-          <line>14</line>
+          <line>18</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -199,8 +192,36 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/converter/BasketConverterImpl.java</url>
-          <line>119</line>
+          <line>122</line>
           <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/CategoryServiceImpl.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/CategoryServiceImpl.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/ProductServiceImpl.java</url>
+          <line>55</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/controller/BasketController.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/patikadev/ecommerce/service/BasketServiceImpl.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

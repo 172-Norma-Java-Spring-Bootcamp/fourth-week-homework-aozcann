@@ -620,7 +620,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customerId\": \"1\",\r\n    \"items\": [\r\n        {\r\n            \"product\": {\r\n                \"id\": 1\r\n            },\r\n            \"quantity\": 3,\r\n            \"shippingPrice\": 20\r\n        }\r\n    ],\r\n    \"paymentType\": \"DEBIT_CARD\",\r\n    \"campaign\": null\r\n}",
+							"raw": "{\r\n    \"customerId\": \"4\",\r\n    \"items\": [\r\n        {\r\n            \"product\": {\r\n                \"id\": 1\r\n            },\r\n            \"quantity\": 10,\r\n            \"shippingPrice\": 20\r\n        }\r\n    ],\r\n    \"paymentType\": \"DEBIT_CARD\",\r\n    \"campaignCode\": \"yuzdeonbes\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -683,7 +683,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"basketId\" : 1,\r\n    \"paymentType\": \"ON_THE_DOOR\"\r\n\r\n\r\n\r\n\r\n}",
+							"raw": "{\r\n    \"basketId\" : 1,\r\n    \"paymentType\": \"ON_THE_DOOR\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -712,7 +712,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"basketId\" : 1,\r\n    \"paymentType\": \"ON_THE_DOOR\"\r\n\r\n\r\n\r\n\r\n}",
+							"raw": "{\r\n    \"basketId\": 2,\r\n    \"paymentType\": \"DEBIT_CARD\",\r\n    \"cardNumber\": \"3424244\",\r\n    \"cardOwnerName\": \"Ahmet\",\r\n    \"cardLastDate\": \"121212\",\r\n    \"ccv\": \"111\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -735,21 +735,12 @@
 					"response": []
 				},
 				{
-					"name": "payment_debit_card Copy",
+					"name": "updateOrderStatus",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"basketId\" : 1,\r\n    \"paymentType\": \"ON_THE_DOOR\"\r\n\r\n\r\n\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/orders",
+							"raw": "http://localhost:8080/api/orders/status/2?status=DELIVERED",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -757,7 +748,15 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"orders"
+								"orders",
+								"status",
+								"2"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "DELIVERED"
+								}
 							]
 						}
 					},
@@ -775,7 +774,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Ramazan\",\r\n    \"code\":\"ramadan\",\r\n    \"type\":\"AMOUNT\",\r\n    \"discount\": 100,\r\n    \"limit\":100\r\n    \r\n}",
+							"raw": "{\r\n    \"name\":\"Yuzdeon\",\r\n    \"code\":\"yuzdeon\",\r\n    \"type\":\"RATE\",\r\n    \"discount\": 0.1,\r\n    \"limit\":100\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -24,6 +24,10 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public CreateCampaignResponse create(CreateCampaignRequest request) {
+        if (campaignRepository.findByCodeAndIsDeleted(request.code(), false).isPresent()){
+            log.error("Campaign already found");
+            throw new BusinessServiceOperationException.CampaignAlreadyFoundException("Campaign already found");
+        }
         Campaign campaign = campaignConverter.toCreateCampaign(request);
         campaignRepository.save(campaign);
         log.info("Campaign created successfully by id -> {}", campaign.getId());

@@ -77,6 +77,12 @@ public final class BusinessServiceOperationException {
         }
     }
 
+    public static class CampaignAlreadyFoundException extends BaseException {
+        public CampaignAlreadyFoundException(String message) {
+            super(message);
+        }
+    }
+
     public static class CampaignOverLimitException extends BaseException {
         public CampaignOverLimitException(String message) {
             super(message);

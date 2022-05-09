@@ -12,6 +12,7 @@ import org.patikadev.ecommerce.repository.CategoryRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Component
@@ -61,7 +62,11 @@ public class ProductConverterImpl implements ProductConverter {
     @Override
     public GetProductResponse toGetProductResponse(Product product) {
         GetBrandResponse getBrandResponse = new GetBrandResponse(product.getBrand().getId(), product.getBrand().getName());
-        GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(product.getCategory().getParent().getId(), product.getCategory().getParent().getName());
+
+        GetCategoryParentResponse getCategoryParentResponse = new GetCategoryParentResponse(null,null);
+        if (Objects.nonNull(product.getCategory().getParent())){
+            getCategoryParentResponse = new GetCategoryParentResponse(product.getCategory().getParent().getId(), product.getCategory().getParent().getName());
+        }
         GetCategoryResponse getCategoryResponse = new GetCategoryResponse(product.getCategory().getId(), product.getCategory().getName(), getCategoryParentResponse);
         return new GetProductResponse(product.getId(),
                 product.getName(),

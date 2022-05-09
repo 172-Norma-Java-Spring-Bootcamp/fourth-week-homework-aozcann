@@ -20,7 +20,7 @@ public class Campaign extends BaseExtendedModel {
     CampaignType type;
     BigDecimal discount; // It can be rate or amount according to Campaign type.
     BigDecimal usageLimit; // Total usage limit
-    BigDecimal currentUsageCount;
+    BigDecimal currentUsageCount = BigDecimal.ZERO;
     @JsonProperty("dateOfStart")
     Date startDate; // Beginning of validity date
     @JsonProperty("dateOfEnd")

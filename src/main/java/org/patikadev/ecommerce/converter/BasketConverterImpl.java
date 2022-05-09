@@ -99,17 +99,20 @@ public class BasketConverterImpl implements BasketConverter {
             campaignRepository.save(campaign);
             campaignHistoryService.create(customer.getId(), campaign.getId(), basket.getDiscountPrice());
         } else {
+
             // This control checks the first use of the campaign.
             // If campaignHistoryList is empty this customer will be use campaign NewlyRegisteredCampaignDiscount
             if (campaignHistoryList.isEmpty()) {
                 NewlyRegisteredCampaignDiscount newlyRegisteredCampaignDiscount = new NewlyRegisteredCampaignDiscount();
                 BigDecimal totalPriceWithDiscount = newlyRegisteredCampaignDiscount.apply(basket.getPrice());
                 setterTotalPriceAndDiscountPrice(basket, totalPriceWithDiscount);
+
+//                campaign.setCurrentUsageCount(campaign.getCurrentUsageCount().add(new BigDecimal(1)));
+                // If the campaign was used, a new campaign history record will be created and the current usage limit will be increased by one.
+//                campaignRepository.save(campaign);
+                campaignHistoryService.create(customer.getId(), null, basket.getDiscountPrice());
             }
-            // If the campaign was used, a new campaign history record will be created and the current usage limit will be increased by one.
-            campaign.setCurrentUsageCount(campaign.getCurrentUsageCount().add(new BigDecimal(1)));
-            campaignRepository.save(campaign);
-            campaignHistoryService.create(customer.getId(), campaign.getId(), basket.getDiscountPrice());
+
         }
         return basket;
     }

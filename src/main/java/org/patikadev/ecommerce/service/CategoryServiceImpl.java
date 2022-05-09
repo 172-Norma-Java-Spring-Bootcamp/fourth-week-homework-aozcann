@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +26,21 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CreateCategoryResponse create(CreateCategoryRequest request) {
 
-        Category parent = categoryRepository
-                .findByIdAndIsDeleted(request.parent().getId(), false)
-                .orElseThrow(() -> new BusinessServiceOperationException.CategoryParentNotFoundException("Category parent not found"));
+        if (Objects.isNull(request.parent())) {
+            Category category = categoryConverter.toCreateCategory(request, null);
+            categoryRepository.save(category);
+            log.info("Category created successfully by id -> {}", category.getId());
+            return categoryConverter.toCreateCategoryResponse(category);
+        } else {
+            Category parent = categoryRepository
+                    .findByIdAndIsDeleted(request.parent().getId(), false)
+                    .orElseThrow(() -> new BusinessServiceOperationException.CategoryParentNotFoundException("Category parent not found"));
 
-        Category category = categoryConverter.toCreateCategory(request, parent);
-        categoryRepository.save(category);
-        log.info("Category created successfully by id -> {}", category.getId());
-        return categoryConverter.toCreateCategoryResponse(category);
+            Category category = categoryConverter.toCreateCategory(request, parent);
+            categoryRepository.save(category);
+            log.info("Category created successfully by id -> {}", category.getId());
+            return categoryConverter.toCreateCategoryResponse(category);
+        }
     }
 
     @Override
@@ -55,7 +63,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public boolean deleteCategoryById(Long id, boolean isHardDeleted) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found"));
+        Category category = categoryRepository
+                .findById(id)
+                .orElseThrow(() -> new BusinessServiceOperationException.CategoryNotFoundException("Category not found"));
         if (isHardDeleted) {
             categoryRepository.delete(category);
             log.info("Category hard deleted successfully.");
